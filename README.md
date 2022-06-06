@@ -60,3 +60,187 @@ void PlayAgainMessage();
 void GoodbyeMessage();
 
 int HISTORY_HIGH_SCORE = 0; // 用於記錄整個節目中的最高分
+
+class Student
+{
+private:
+	double x; // x座標
+	double y; // y座標
+public:
+	Student(double x, double y) { this->x = x; this->y = y; }
+	double X() { return x; }
+	double Y() { return y; }
+	void Draw(); // 在終端中顯示學生的當前位置
+	void Erase(); // 清除終端中學生的當前位置 
+	void Move(); // 移動學生 (Erase()+Draw())
+};
+
+void Student::Draw()
+{
+	gotoxy(x, y); cout << "傑";
+}
+
+void Student::Erase()
+{
+	gotoxy(x, y); cout << "  ";
+}
+
+void Student::Move()
+{
+	if (_kbhit())
+	{
+		Erase();
+
+		char key = _getch();
+		switch (key)
+		{
+		case KEY_LEFT: if (x - SPEED_STUDENT > BORDER_LEFT) { x -= SPEED_STUDENT; break; }
+		case KEY_RIGHT: if (x + SPEED_STUDENT < BORDER_RIGHT) { x += SPEED_STUDENT; break; }
+		case KEY_UP: if (y - SPEED_STUDENT > BORDER_UP) { y -= SPEED_STUDENT; break; }
+		case KEY_DOWN: if (y + SPEED_STUDENT < BORDER_DOWN) { y += SPEED_STUDENT; break; }
+		}
+	}
+
+	Draw(); // 無論用戶按鍵，終端中始終有一個學生	
+}
+
+class Score59
+{
+private:
+	double x; // x 座標
+	double y; // y 座標
+	static bool gameMode;
+public:
+	static void setGameMode(bool level); // true(1) 是簡單模式，而 false(0) 是困難模式
+	Score59(double x, double y) { this->x = x; this->y = y; }
+	double X() { return x; }
+	double Y() { return y; }
+	void Draw(); // 在終端顯示 59 的當前位置
+	void Erase(); // 清除終端中學生的當前位置
+	void Move(); // 移動 59 
+	bool isOut(); // 檢測59是否出界
+};
+
+void Score59::Draw()
+{
+	gotoxy(x, y); cout << "59";
+}
+
+void Score59::Erase()
+{
+	gotoxy(x, y); cout << "  ";
+}
+
+void Score59::Move()
+{
+	Erase();
+
+	if (gameMode == 1)
+		y += SPEED_SCORE59_EASY; // 向下移動一個 SPEED_SCORE59 單位
+	else
+		y += SPEED_SCORE59_HARD;
+
+	Draw();
+}
+
+bool Score59::isOut()
+{
+	if (y > BORDER_DOWN)
+		return true;
+	else
+		return false;
+}
+
+bool Score59::gameMode = 1; // 用戶默認以簡單模式玩遊戲
+
+void Score59::setGameMode(bool level)
+{
+	gameMode = level;
+}
+
+class Pass
+{
+private:
+	int x; // x 座標
+	int y; // y 座標 
+public:
+	Pass(double x, double y) { this->x = x; this->y = y; }
+	double X() { return x; }
+	double Y() { return y; }
+	void Draw(); // 在終端顯示當前 pass 的位置 
+	void Erase(); // 清除終端中pass的當前位置
+	void Move(); // 移動通行證
+	bool isOut(); // 檢測傳球是否出界
+};
+
+void Pass::Draw()
+{
+	gotoxy(x, y); cout << "及"; //  當 (y - 1) 表示 y 上方的一行
+	gotoxy(x, y + 1); cout << "格"; // (y + 1) 表示 y 下面的一行
+
+}
+
+void Pass::Erase()
+{
+	gotoxy(x, y); cout << "  ";
+	gotoxy(x, y + 1); cout << "  ";
+}
+
+void Pass::Move()
+{
+	Erase();
+	y -= SPEED_PASS; // 向上移動一個 SPEED_PASS 單元
+	Draw();
+}
+
+bool Pass::isOut()
+{
+	if (y < BORDER_UP)
+		return true;
+	else
+		return false;
+}
+
+int main()
+{
+	Initialize(); // 一些背景設置 
+
+	WelcomeMessage();
+	char guideKey = _getch();
+
+	if (guideKey == 'r' || guideKey == 'R') // 按 R/r 查看遊戲指南
+	{
+		GuideMessage();
+		_getch(); // 按任意鍵玩遊戲
+	}
+
+	bool playAgain = true;
+
+	while (playAgain)
+	{
+		ChooseGameMode();
+
+		bool gameVictory = true;
+		gameVictory = StartGame();
+
+		if (gameVictory)
+		{
+			VictoryMessage();
+			Sleep(SHOW_MSG_LONG); // 確保用戶可以清楚地看到此消息
+		}
+
+		else
+		{
+			DefeatMessage();
+			Sleep(SHOW_MSG_LONG); // 確保用戶可以清楚地看到此消息 	
+		}
+
+		playAgain = PlayAgainOrNot();
+	}
+
+	GoodbyeMessage();
+	Sleep(SHOW_MSG_LONG);
+	DrawWhiteSpace(0, 0, BORDER_RIGHT_WIDE, BORDER_DOWN);
+
+	return 0;
+}
