@@ -496,9 +496,9 @@ void GuideMessage()
 	DrawWhiteSpace(0, 0, BORDER_RIGHT_WIDE, BORDER_DOWN);
 	int x = 44;
 	int y = 2;
-	gotoxy(x, y); cout << " ";
+	
 	y = 5;
-	gotoxy(50, y); cout << "       ";
+	
 	x = 35;
 	gotoxy(x, y + 2); cout << "智仁是個大學教授，為了讓他的學生了解程式的重要性。";
     	gotoxy(x, y + 4); cout << "學生特別製作了一個小遊戲讓教授遊玩。        ";
