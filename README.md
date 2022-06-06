@@ -496,20 +496,20 @@ void GuideMessage()
 	DrawWhiteSpace(0, 0, BORDER_RIGHT_WIDE, BORDER_DOWN);
 	int x = 44;
 	int y = 2;
-	
+	gotoxy(x, y); cout << " 遊戲指引  |  Game Guide ";
 	y = 5;
-	
+	gotoxy(50, y); cout << "    前言    ";
 	x = 35;
 	gotoxy(x, y + 2); cout << "智仁是個大學教授，為了讓他的學生了解程式的重要性。";
-    	gotoxy(x, y + 4); cout << "學生特別製作了一個小遊戲讓教授遊玩。        ";
-    	gotoxy(x, y + 6); cout << "當教授回想起當年學程式的辛苦時，就是學生及格的時刻。         ";
-    	gotoxy(x, y + 8); cout << "跟著智仁教授一起遊玩學生所精心製作的小遊戲吧 ! ";
-    	gotoxy(48, y + 10); cout << "    遊戲玩法    ";
-    	gotoxy(x, y + 12); cout << "遊戲當中你將扮演著智仁，遊玩著學生所做的遊戲。";
-    	gotoxy(x, y + 14); cout << "發射方式 : 按下鍵盤的空白鍵    移動方式 : 按下鍵盤的方向鍵 ";
-    	gotoxy(x, y + 16); cout << "計分方式 : 每消滅一個88即得" << GET_GAME_POINT << "分，若被88打到，倒扣" << LOSE_GAME_POINT << "分";
-    	gotoxy(x, y + 18); cout << "遊戲時間共" << TIME_LIMIT << "秒，在時間內打到" << VICTORY_GATE << "分即可PASS。若無請明年再來一次!";
-    	gotoxy(x, y + 20); cout << "按下任意鍵開始遊戲";
+	gotoxy(x, y + 4); cout << "學生特別製作了一個小遊戲讓教授遊玩。        ";
+	gotoxy(x, y + 6); cout << "當教授回想起當年學程式的辛苦時，就是學生及格的時刻。         ";
+	gotoxy(x, y + 8); cout << "跟著智仁教授一起遊玩學生所精心製作的小遊戲吧 ! ";
+	gotoxy(48, y + 10); cout << "    遊戲玩法    ";
+	gotoxy(x, y + 12); cout << "遊戲當中你將扮演著智仁，遊玩著學生所做的遊戲。";
+	gotoxy(x, y + 14); cout << "發射方式 : 按下鍵盤的空白鍵    移動方式 : 按下鍵盤的方向鍵 ";
+	gotoxy(x, y + 16); cout << "計分方式 : 每消滅一個88即得" << GET_GAME_POINT << "分，若被88打到，倒扣" << LOSE_GAME_POINT << "分";
+	gotoxy(x, y + 18); cout << "遊戲時間共" << TIME_LIMIT << "秒，在時間內打到" << VICTORY_GATE << "分即可PASS。若無請明年再來一次!";
+	gotoxy(x, y + 20); cout << "按下任意鍵開始遊戲";
 }
 
 void GameModeMessage()
