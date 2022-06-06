@@ -475,3 +475,113 @@ bool PlayAgainOrNot()
 	else
 		return true;
 }
+void WelcomeMessage()
+{
+	DrawWhiteSpace(0, 0, BORDER_RIGHT_WIDE, BORDER_DOWN);
+	int x = 20;
+	int y = 10;
+	gotoxy(x, y); cout << " ";
+	gotoxy(x, y + 1); cout << " ";
+	gotoxy(x, y + 2); cout << "";
+	gotoxy(x, y + 3); cout << "";
+	gotoxy(x, y + 4); cout << "   ";
+	gotoxy(x, y + 5); cout << " ";
+	gotoxy(x, y + 6); cout << " ";
+	gotoxy(40, y + 9); cout << "";
+	gotoxy(31, y + 12); cout << "";
+}
+
+void GuideMessage()
+{
+	DrawWhiteSpace(0, 0, BORDER_RIGHT_WIDE, BORDER_DOWN);
+	int x = 44;
+	int y = 2;
+	gotoxy(x, y); cout << " ";
+	y = 5;
+	gotoxy(50, y); cout << "       ";
+	x = 35;
+	gotoxy(x, y + 2); cout << "";
+	gotoxy(x, y + 4); cout << " ";
+	gotoxy(x, y + 6); cout << "";
+	gotoxy(x, y + 8); cout << " ";
+	gotoxy(48, y + 10); cout << "    ";
+	gotoxy(x, y + 12); cout << "";
+	gotoxy(x, y + 14); cout << "";
+	gotoxy(x, y + 16); cout << "" << GET_GAME_POINT << "" << LOSE_GAME_POINT << "";
+	gotoxy(x, y + 18); cout << "" << TIME_LIMIT << "" << VICTORY_GATE << "";
+	gotoxy(x, y + 20); cout << "";
+}
+
+void GameModeMessage()
+{
+	DrawWhiteSpace(0, 0, BORDER_RIGHT_WIDE, BORDER_DOWN);
+	int x = 40;
+	int y = 10;
+	gotoxy(x, y); cout << "";
+	gotoxy(x, y + 1); cout << "   ";
+	gotoxy(x, y + 2); cout << " ";
+	gotoxy(x, y + 3); cout << "";
+	gotoxy(x, y + 4); cout << "";
+	gotoxy(x, y + 5); cout << "";
+	gotoxy(x, y + 6); cout << "";
+}
+
+void VictoryMessage()
+{
+	DrawWhiteSpace(BORDER_LEFT_WIDE, BORDER_UP, BORDER_RIGHT_WIDE, BORDER_DOWN);
+	int x = 25;
+	int y = 10;
+	gotoxy(x, y); cout << "";
+	gotoxy(x, y + 1); cout << "";
+	gotoxy(x, y + 2); cout << "";
+	gotoxy(x, y + 3); cout << "";
+	gotoxy(x, y + 4); cout << "";
+	gotoxy(x, y + 5); cout << "";
+	gotoxy(x, y + 6); cout << "";
+	gotoxy(x, y + 8); cout << " ";
+}
+
+void DefeatMessage()
+{
+	DrawWhiteSpace(BORDER_LEFT_WIDE, BORDER_UP, BORDER_RIGHT_WIDE, BORDER_DOWN);
+	int x = 25;
+	int y = 10;
+	gotoxy(x, y); cout << " ";
+	gotoxy(x, y + 1); cout << "";
+	gotoxy(x, y + 2); cout << "";
+	gotoxy(x, y + 3); cout << "";
+	gotoxy(x, y + 4); cout << "";
+	gotoxy(x, y + 5); cout << "";
+	gotoxy(x, y + 6); cout << "";
+	gotoxy(x, y + 8); cout << "";
+}
+
+void PlayAgainMessage()
+{
+	DrawWhiteSpace(0, 0, BORDER_RIGHT, BORDER_DOWN);
+	int x = 10;
+	int y = 10;
+	gotoxy(x, y); cout << " ";
+	gotoxy(x, y + 1); cout << "";
+	gotoxy(x, y + 2); cout << "";
+	gotoxy(x, y + 3); cout << "";
+	gotoxy(x, y + 4); cout << "";
+	gotoxy(x, y + 5); cout << "";
+	gotoxy(x, y + 6); cout << "";
+	gotoxy(x, y + 8); cout << " ";
+}
+
+void GoodbyeMessage()
+{
+	DrawWhiteSpace(0, 0, BORDER_RIGHT_WIDE, BORDER_DOWN);
+	int x = 15;
+	int y = 10;
+	gotoxy(x, y); cout << " ";
+	gotoxy(x, y + 1); cout << " ";
+	gotoxy(x, y + 2); cout << " ";
+	gotoxy(x, y + 3); cout << "";
+	gotoxy(x, y + 4); cout << "";
+	gotoxy(x, y + 5); cout << "";
+	gotoxy(x, y + 6); cout << " ";
+	gotoxy(x, y + 8); cout << " ";
+}
