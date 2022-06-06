@@ -480,15 +480,15 @@ void WelcomeMessage()
 	DrawWhiteSpace(0, 0, BORDER_RIGHT_WIDE, BORDER_DOWN);
 	int x = 20;
 	int y = 10;
-	gotoxy(x, y); cout << " ";
-	gotoxy(x, y + 1); cout << " ";
-	gotoxy(x, y + 2); cout << "";
-	gotoxy(x, y + 3); cout << "";
-	gotoxy(x, y + 4); cout << "   ";
-	gotoxy(x, y + 5); cout << " ";
-	gotoxy(x, y + 6); cout << " ";
-	gotoxy(40, y + 9); cout << "";
-	gotoxy(31, y + 12); cout << "";
+	gotoxy(x, y); cout << "    _________            /  |              | |             / |      |---------";
+	gotoxy(x, y + 1); cout << "   |        |           /    |             |  |           /  |      |         ";
+	gotoxy(x, y + 2); cout << "   |        |          /      |            |   |         /   |      |         ";
+	gotoxy(x, y + 3); cout << "   |________|         /______  |           |    |       /    |      |---------";
+	gotoxy(x, y + 4); cout << "            |        /          |          |     |     /     |      |         ";
+	gotoxy(x, y + 5); cout << "            |       /            |         |      |   /      |      |         ";
+	gotoxy(x, y + 6); cout << "    ________|      /              |        |       | /       |      |---------";
+	gotoxy(40, y + 9); cout << "       物件導向小專題_第15組 ";
+	gotoxy(31, y + 12); cout << "Press R/r to see game guide.	Press other keys to play.";
 }
 
 void GuideMessage()
@@ -517,13 +517,13 @@ void GameModeMessage()
 	DrawWhiteSpace(0, 0, BORDER_RIGHT_WIDE, BORDER_DOWN);
 	int x = 40;
 	int y = 10;
-	gotoxy(x, y); cout << "";
-	gotoxy(x, y + 1); cout << "選擇遊戲難度";
-	gotoxy(x, y + 2); cout << " ";
-	gotoxy(x, y + 3); cout << "簡單：按E";
-	gotoxy(x, y + 4); cout << "";
-	gotoxy(x, y + 5); cout << "困難：按H";
-	gotoxy(x, y + 6); cout << "";
+	gotoxy(x, y); cout << "                 ";
+	gotoxy(x, y + 1); cout << "              請選擇遊戲難度:";
+	gotoxy(x, y + 2); cout << "                ";
+	gotoxy(x, y + 3); cout << "                簡單：按 E/e";
+	gotoxy(x, y + 4); cout << "                 ";
+	gotoxy(x, y + 5); cout << "                困難：按 H/h";
+	gotoxy(x, y + 6); cout << "                 ";
 }
 
 void VictoryMessage()
