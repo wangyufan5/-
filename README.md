@@ -244,3 +244,37 @@ int main()
 
 	return 0;
 }
+
+void gotoxy(double x, double y) // 允許使用坐標在終端內移動 
+{	// 類型是雙精度的，所以物體可以移動小於 1 個單位 
+	HANDLE hCon = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD dwPos;
+	dwPos.X = x; // 從0開始
+	dwPos.Y = y; // 從0開始
+	SetConsoleCursorPosition(hCon, dwPos);
+}
+
+void DrawWhiteSpace(int a_x, int a_y, int b_x, int b_y) // 清理終端中的某個空間 
+{
+	for (int i = a_x; i <= b_x; i++)
+	{
+		for (int j = a_y; j <= b_y; j++)
+		{
+			gotoxy(i, j);
+			cout << " ";
+		}
+	}
+}
+
+void Initialize() // 設置控制台標題並隱藏控制台光標
+{
+	// 設置控制台標題
+	SetConsoleTitle("Flunk You");
+
+	// 隱藏控制台光標
+	HANDLE hCon = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_CURSOR_INFO cci;
+	cci.dwSize = 1;
+	cci.bVisible = FALSE;
+	SetConsoleCursorInfo(hCon, &cci);
+}
