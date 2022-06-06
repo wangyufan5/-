@@ -427,3 +427,51 @@ bool StartGame()
 		return false;
 }
 	
+	bool Collision(double x1, double y1, double x2, double y2) // 檢查 59 是否撞到任何通行證
+{
+	if (abs(x1 - x2) < EQUALITY_GAP_X) // 59的寬度和“傑”的寬度不一樣   
+	{
+		if (abs(y1 - y2) < EQUALITY_GAP_Y)
+			return true;
+		else
+			return false;
+	}
+
+	return false;
+}
+
+void UpdateInfoBar(int gameScore, std::chrono::seconds leftTime) // 在遊戲過程中向用戶更新遊戲信息
+{
+	gotoxy(TIME_POS_X, TIME_POS_Y); cout << "剩餘時間: " << leftTime.count() << "	"; // 更新時間 
+	// 因為有時數字的位數不同，所以在數字後面打印一些空格以擦除前一個數字中的數字 
+	gotoxy(CUR_SCORE_POS_X, CUR_SCORE_POS_Y); cout << "分數: " << gameScore << "	"; // 更新遊戲分數 
+	gotoxy(HIS_SCORE_POS_X, HIS_SCORE_POS_Y); cout << "歷史高分: " << HISTORY_HIGH_SCORE; // 更新歷史最高遊戲分數 	
+	if (gameScore >= HISTORY_HIGH_SCORE)
+	{
+		HISTORY_HIGH_SCORE = gameScore;
+		gotoxy(HIS_SCORE_POS_X, HIS_SCORE_POS_Y); cout << "歷史高分: " << HISTORY_HIGH_SCORE; // 更新歷史最高遊戲分數 	
+	}
+}
+
+bool PlayAgainOrNot()
+{
+	PlayAgainMessage();
+
+	char playAgainKey = '0';
+	bool VaildKeyForPlayAgain = false;
+
+	while (!VaildKeyForPlayAgain) // 防止用戶按下不適當的鍵
+	{
+		playAgainKey = _getch();
+
+		if (playAgainKey == 'y' || playAgainKey == 'Y' || playAgainKey == 'n' || playAgainKey == 'N')
+		{
+			VaildKeyForPlayAgain = true;
+		}
+	}
+
+	if (playAgainKey == 'n' || playAgainKey == 'N')
+		return false;
+	else
+		return true;
+}
