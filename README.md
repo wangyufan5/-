@@ -278,3 +278,152 @@ void Initialize() // 設置控制台標題並隱藏控制台光標
 	cci.bVisible = FALSE;
 	SetConsoleCursorInfo(hCon, &cci);
 }
+
+void ChooseGameMode()
+{
+	GameModeMessage();
+
+	char gameModeKey = '0';
+	bool VaildKeyForGameMode = false;
+
+	while (!VaildKeyForGameMode) // 防止用戶按下不適當的鍵
+	{
+		gameModeKey = _getch();
+
+		if (gameModeKey == 'e' || gameModeKey == 'E' || gameModeKey == 'h' || gameModeKey == 'H')
+		{
+			VaildKeyForGameMode = true;
+		}
+	}
+
+	if (gameModeKey == 'e' || gameModeKey == 'E')
+	{
+		Score59::setGameMode(1); // 1（真）是簡單模式					
+	}
+
+	else
+	{
+		Score59::setGameMode(0); // 0（假）是困難模式					
+	}
+}
+
+bool StartGame()
+{
+	DrawWhiteSpace(0, 0, BORDER_RIGHT_WIDE, BORDER_DOWN);
+
+	std::chrono::seconds timeLimit(TIME_LIMIT); // 將 int/double 轉換為 chrono 定義的秒數
+	std::chrono::seconds duration(0); // 計算遊戲自開始以來的時間
+	std::chrono::seconds leftTime(TIME_LIMIT); // 計算還剩多少秒
+	auto start = chrono::steady_clock::now(); // 記錄開始時間
+	int gameScore = 0; // 比賽成績
+
+	Student std = Student(STUDENT_INITIAL_X, STUDENT_INITIAL_Y); // 學生一開始的位置
+	list<Score59> scores; // 59("五九")的動態列表  
+	list<Score59>::iterator s; // 列表的迭代器
+	list<Pass> passes; // pass("及格")動態列表
+	list<Pass>::iterator p; // 此列表的另一個迭代器
+
+	srand(time(nullptr)); // 為 59s 的位置生成隨機數
+	int mapWidth = BORDER_RIGHT - BORDER_LEFT + 1; // 包括邊界
+	int mapLength = BORDER_DOWN - BORDER_UP + 1; // 包括邊界
+	double rnX = 0;
+	double rnY = 0; // 初始化隨機數
+	for (int i = 0; i < SCORE59_CNT; i++) // 產生 59s
+	{
+		rnX = (rand() % mapWidth) + BORDER_LEFT;
+		rnY = (rand() % (mapLength / 2)) + (BORDER_UP); //  (mapLength / 2) 一開始防止59s在地圖上太低
+		scores.push_back(Score59(rnX, rnY));
+	}
+
+	while (duration < timeLimit) // 雖然遊戲還沒有結束
+	{
+		for (p = passes.begin(); p != passes.end(); p++) // 對於列表中的每一個通行證
+		{
+			p->Move(); // 向上移動一個 SPEED_PASS 單元
+			if (p->isOut()) // 如果通行證到達地圖頂部
+			{
+				p->Erase(); // 在終端中清除它 
+				p = passes.erase(p); // 在列表中刪除它
+			}
+		}
+
+		for (s = scores.begin(); s != scores.end(); s++) // 對於列表中的每 59 個
+		{
+			s->Move(); // 向下移動一個 SPEED_SCORE59_EASY /SPEED_SCORE59_HARD 單位
+			if (s->isOut()) // 如果 59 到達地圖底部
+			{
+				scores.push_back(Score59(rnX, BORDER_UP)); // 將新的 59 添加到列表中以保持遊戲中 59 的數量相同
+				s->Erase(); // 在終端中清除它 
+				s = scores.erase(s); // 在列表中刪除它
+
+				rnX = (rand() % mapWidth) + BORDER_LEFT;
+				break;
+			}
+			
+		}
+
+		for (s = scores.begin(); s != scores.end(); s++) // 對於列表中的每 59 個
+		{
+			// 檢查59是否撞到通行證
+			for (p = passes.begin(); p != passes.end(); p++) // 對於列表中的每一個通行證
+			{
+				if (Collision(s->X(), s->Y(), p->X(), p->Y()))
+				{
+					scores.push_back(Score59(rnX, BORDER_UP)); // 將新的 59 添加到列表中以保持遊戲中 59 的數量相同
+					gameScore += GET_GAME_POINT;
+					p->Erase(); // 在終端中清除它
+					s->Erase(); // 在終端中清除它  
+					p = passes.erase(p); // 在列表中刪除它
+					s = scores.erase(s); // 在列表中刪除它
+
+					rnX = (rand() % mapWidth) + BORDER_LEFT;
+					break;
+				}
+				
+			}
+		}
+
+		for (s = scores.begin(); s != scores.end(); s++) // 對於列表中的每 59 個
+		{
+			// 檢查59是否撞到學生
+			if (Collision(s->X(), s->Y(), std.X(), std.Y()))
+			{
+				scores.push_back(Score59(rnX, BORDER_UP)); // 將新的 59 添加到列表中以保持遊戲中 59 的數量相同
+				gameScore -= LOSE_GAME_POINT;
+				std.Erase(); // 在終端中清除它
+				s->Erase(); // 在終端中清除它  
+				Sleep(SHOW_MSG_SHORT);
+				s = scores.erase(s); // 在列表中刪除它
+
+				rnX = (rand() % mapWidth) + BORDER_LEFT;
+				break;
+			}
+			
+		}
+
+		if (_kbhit())
+		{
+			char key = _getch();
+			if (key == ' ') // 按空格鍵，然後將一個通行證添加到通行證列表
+			{
+				passes.push_back(Pass(std.X(), std.Y() - 1));
+			}
+		}
+
+		std.Move(); // 學生移動
+
+		auto t1 = chrono::steady_clock::now(); // 記錄當前時間
+		duration = std::chrono::duration_cast<std::chrono::seconds>(t1 - start); // 計算遊戲進行了多長時間並將持續時間轉換為秒數
+		leftTime = timeLimit - duration; // 計算還剩多少秒 
+
+		UpdateInfoBar(gameScore, leftTime); // 向用戶更新遊戲信息
+
+		Sleep(INTERVAL_BETWEEN_EACH_LOOP); // ESSENTIAL,否則遊戲將無法玩
+	}
+
+	if (gameScore >= VICTORY_GATE)
+		return true;
+	else
+		return false;
+}
+	
