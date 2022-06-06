@@ -517,13 +517,13 @@ void GameModeMessage()
 	DrawWhiteSpace(0, 0, BORDER_RIGHT_WIDE, BORDER_DOWN);
 	int x = 40;
 	int y = 10;
-	gotoxy(x, y); cout << "                 ";
+	
 	gotoxy(x, y + 1); cout << "              請選擇遊戲難度:";
-	gotoxy(x, y + 2); cout << "                ";
+	
 	gotoxy(x, y + 3); cout << "                簡單：按 E/e";
-	gotoxy(x, y + 4); cout << "                 ";
+	
 	gotoxy(x, y + 5); cout << "                困難：按 H/h";
-	gotoxy(x, y + 6); cout << "                 ";
+
 }
 
 void VictoryMessage()
@@ -531,13 +531,7 @@ void VictoryMessage()
 	DrawWhiteSpace(BORDER_LEFT_WIDE, BORDER_UP, BORDER_RIGHT_WIDE, BORDER_DOWN);
 	int x = 25;
 	int y = 10;
-	gotoxy(x, y); cout << "";
-	gotoxy(x, y + 1); cout <<"";
-	gotoxy(x, y + 2); cout << "";
-	gotoxy(x, y + 3); cout << "";
-	gotoxy(x, y + 4); cout << "";
-	gotoxy(x, y + 5); cout << "";
-	gotoxy(x, y + 6); cout << "";
+
 	gotoxy(x, y + 8); cout << "恭喜過關";
 }
 
@@ -546,13 +540,7 @@ void DefeatMessage()
 	DrawWhiteSpace(BORDER_LEFT_WIDE, BORDER_UP, BORDER_RIGHT_WIDE, BORDER_DOWN);
 	int x = 25;
 	int y = 10;
-	gotoxy(x, y); cout << " ";
-	gotoxy(x, y + 1); cout << "";
-	gotoxy(x, y + 2); cout << "";
-	gotoxy(x, y + 3); cout << "";
-	gotoxy(x, y + 4); cout << "";
-	gotoxy(x, y + 5); cout << "";
-	gotoxy(x, y + 6); cout << "";
+
 	gotoxy(x, y + 8); cout << "再接再厲";
 }
 
@@ -561,13 +549,7 @@ void PlayAgainMessage()
 	DrawWhiteSpace(0, 0, BORDER_RIGHT, BORDER_DOWN);
 	int x = 10;
 	int y = 10;
-	gotoxy(x, y); cout << " ";
-	gotoxy(x, y + 1); cout << "";
-	gotoxy(x, y + 2); cout << "";
-	gotoxy(x, y + 3); cout << "";
-	gotoxy(x, y + 4); cout << "";
-	gotoxy(x, y + 5); cout << "";
-	gotoxy(x, y + 6); cout << "";
+
 	gotoxy(x, y + 8); cout <<"再次挑戰按Y 結束按N";
 }
 
@@ -576,12 +558,6 @@ void GoodbyeMessage()
 	DrawWhiteSpace(0, 0, BORDER_RIGHT_WIDE, BORDER_DOWN);
 	int x = 15;
 	int y = 10;
-	gotoxy(x, y); cout << " ";
-	gotoxy(x, y + 1); cout << " ";
-	gotoxy(x, y + 2); cout << " ";
-	gotoxy(x, y + 3); cout << "";
-	gotoxy(x, y + 4); cout << "";
-	gotoxy(x, y + 5); cout << "";
-	gotoxy(x, y + 6); cout << " ";
+
 	gotoxy(x, y + 8); cout << "Thanks for playing!";
 }
