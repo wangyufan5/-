@@ -518,11 +518,11 @@ void GameModeMessage()
 	int x = 40;
 	int y = 10;
 	gotoxy(x, y); cout << "";
-	gotoxy(x, y + 1); cout << "   ";
+	gotoxy(x, y + 1); cout << "選擇遊戲難度";
 	gotoxy(x, y + 2); cout << " ";
-	gotoxy(x, y + 3); cout << "";
+	gotoxy(x, y + 3); cout << "簡單：按E";
 	gotoxy(x, y + 4); cout << "";
-	gotoxy(x, y + 5); cout << "";
+	gotoxy(x, y + 5); cout << "困難：按H";
 	gotoxy(x, y + 6); cout << "";
 }
 
@@ -532,7 +532,7 @@ void VictoryMessage()
 	int x = 25;
 	int y = 10;
 	gotoxy(x, y); cout << "";
-	gotoxy(x, y + 1); cout << "";
+	gotoxy(x, y + 1); cout <<"";
 	gotoxy(x, y + 2); cout << "";
 	gotoxy(x, y + 3); cout << "";
 	gotoxy(x, y + 4); cout << "";
