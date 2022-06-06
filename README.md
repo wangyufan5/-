@@ -429,7 +429,7 @@ bool StartGame()
 	
 	bool Collision(double x1, double y1, double x2, double y2) // 檢查 59 是否撞到任何通行證
 {
-	if (abs(x1 - x2) < EQUALITY_GAP_X) // 59的寬度和“傑”的寬度不一樣   
+	if (abs(x1 - x2) < EQUALITY_GAP_X) // 59的寬度和“”的寬度不一樣   
 	{
 		if (abs(y1 - y2) < EQUALITY_GAP_Y)
 			return true;
