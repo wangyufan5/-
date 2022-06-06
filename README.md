@@ -77,7 +77,7 @@ public:
 
 void Student::Draw()
 {
-	gotoxy(x, y); cout << "傑";
+	gotoxy(x, y); cout << "仁";
 }
 
 void Student::Erase()
@@ -123,7 +123,7 @@ public:
 
 void Score59::Draw()
 {
-	gotoxy(x, y); cout << "59";
+	gotoxy(x, y); cout << "88";
 }
 
 void Score59::Erase()
