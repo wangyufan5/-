@@ -538,7 +538,7 @@ void VictoryMessage()
 	gotoxy(x, y + 4); cout << "";
 	gotoxy(x, y + 5); cout << "";
 	gotoxy(x, y + 6); cout << "";
-	gotoxy(x, y + 8); cout << " ";
+	gotoxy(x, y + 8); cout << "恭喜過關";
 }
 
 void DefeatMessage()
@@ -553,7 +553,7 @@ void DefeatMessage()
 	gotoxy(x, y + 4); cout << "";
 	gotoxy(x, y + 5); cout << "";
 	gotoxy(x, y + 6); cout << "";
-	gotoxy(x, y + 8); cout << "";
+	gotoxy(x, y + 8); cout << "再接再厲";
 }
 
 void PlayAgainMessage()
@@ -568,7 +568,7 @@ void PlayAgainMessage()
 	gotoxy(x, y + 4); cout << "";
 	gotoxy(x, y + 5); cout << "";
 	gotoxy(x, y + 6); cout << "";
-	gotoxy(x, y + 8); cout << " ";
+	gotoxy(x, y + 8); cout <<"再次挑戰按Y 結束按N";
 }
 
 void GoodbyeMessage()
@@ -583,5 +583,5 @@ void GoodbyeMessage()
 	gotoxy(x, y + 4); cout << "";
 	gotoxy(x, y + 5); cout << "";
 	gotoxy(x, y + 6); cout << " ";
-	gotoxy(x, y + 8); cout << " ";
+	gotoxy(x, y + 8); cout << "Thanks for playing!";
 }
