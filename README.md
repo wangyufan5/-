@@ -175,8 +175,8 @@ public:
 
 void Pass::Draw()
 {
-	gotoxy(x, y); cout << "及"; //  當 (y - 1) 表示 y 上方的一行
-	gotoxy(x, y + 1); cout << "格"; // (y + 1) 表示 y 下面的一行
+	gotoxy(x, y); cout << "再"; //  當 (y - 1) 表示 y 上方的一行
+	gotoxy(x, y + 1); cout << "見"; // (y + 1) 表示 y 下面的一行
 
 }
 
